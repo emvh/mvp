@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server/index.js",
+    "react-dev": "webpack -d --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,22 @@
   "bugs": {
     "url": "https://github.com/emvh/hrsf128-mvp/issues"
   },
-  "homepage": "https://github.com/emvh/hrsf128-mvp#readme"
+  "homepage": "https://github.com/emvh/hrsf128-mvp#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.25",
+    "node": "^14.5.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12"
+  }
 }
