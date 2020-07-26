@@ -1,10 +1,11 @@
 import React from 'react';
+import Events from './Events.jsx';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      view: 'home'
+      view: 'events',
     }
   }
 
@@ -13,7 +14,7 @@ class App extends React.Component {
     if (view === 'home') {
       return (
         <div>
-          
+
           <span><button>Create an Event</button></span>
           <span><button>Find an Event</button></span>
 
@@ -26,7 +27,12 @@ class App extends React.Component {
     }
     if (view === 'events') {
       console.log('events');
-      return <div>eventsview</div>
+      return (
+      <div>
+        eventsview
+        <Events />
+      </div>
+      )
     }
   }
 
