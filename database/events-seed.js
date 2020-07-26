@@ -55,7 +55,7 @@ const extractEventData = (arr) => {
       description: arr[i].description,
       owner: arr[i].owner,
       category: arr[i].categories.category,
-      image: 'https://dog.ceo/api/breeds/image/random',
+      image: 'http://placecorgi.com/480',
     };
     dataSet.push(event);
   }
