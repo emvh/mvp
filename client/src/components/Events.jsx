@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
+import SearchBar from './SearchBar.jsx';
 
 class Events extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Events extends React.Component {
       <div>
         <div>
         search bar
+        <SearchBar />
         </div>
 
         <div>
