@@ -1,11 +1,57 @@
-import React, { userState } from 'react';
+import React from 'react';
 
-function App () {
-  return (
-    <div></div>
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      view: 'home'
+    }
+  }
 
-  );
+  renderView() {
+    const { view } = this.state;
+    if (view === 'home') {
+      return (
+        <div>
+          
+          <span><button>Create an Event</button></span>
+          <span><button>Find an Event</button></span>
+
+        </div>
+      )
+    }
+    if (view === 'adoption') {
+      console.log('adoption feed');
+      return <div>adoption</div>
+    }
+    if (view === 'events') {
+      console.log('events');
+      return <div>eventsview</div>
+    }
+  }
+
+  render() {
+    return (
+      <div>
+
+        <div className='nav'>
+          <span className='section'
+            onClick={() => this.changeView('feed')}>
+            Find Love
+          </span>
+          <span
+            onClick={() => this.changeView('events')}>
+            Find Pawties
+          </span>
+        </div>
+
+        <div className="main">
+          {this.renderView()}
+        </div>
+
+      </div>
+    );
+  }
 }
-
 
 export default App;
