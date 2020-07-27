@@ -63,8 +63,9 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [1, 2, 3];
 
-export default function Album() {
+const Home = (props) => {
   const classes = useStyles();
+  const { onClick } = props;
 
   return (
     <React.Fragment>
@@ -100,7 +101,7 @@ export default function Album() {
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="outlined" color="primary">
+                  <Button variant="outlined" color="primary" onClick={() => onClick('events')}>
                     Find Pawties
                   </Button>
                 </Grid>
@@ -171,4 +172,4 @@ export default function Album() {
 //     </div>
 //   )
 
-// export default Home;
+export default Home;

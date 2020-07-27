@@ -12,6 +12,7 @@ class App extends React.Component {
       isLoaded: false,
     };
     this.renderView = this.renderView.bind(this);
+    this.changeView = this.changeView.bind(this);
   }
 
   componentDidMount() {
@@ -36,10 +37,22 @@ class App extends React.Component {
       });
   }
 
+  changeView(view) {
+    console.log('view:', view);
+    this.setState({
+      view,
+    });
+    this.getData();
+  }
+
   renderView() {
     const { view } = this.state;
     if (view === 'home') {
-      return (<Home />);
+      return (
+      <Home
+        onClick={this.changeView}
+      />
+      );
     }
     if (view === 'adoption') {
       return (<div>adoption</div>);
