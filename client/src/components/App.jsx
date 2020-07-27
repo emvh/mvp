@@ -2,17 +2,20 @@ import React from 'react';
 import axios from 'axios';
 import Events from './Events.jsx';
 import Home from './Home.jsx';
+import EventDetails from './EventDetails.jsx';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      view: 'home',
+      view: 'events',
       events: [],
       isLoaded: false,
+      selectedEvent: {},
     };
     this.renderView = this.renderView.bind(this);
     this.changeView = this.changeView.bind(this);
+    this.handleSelectEvent = this.handleSelectEvent.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +48,15 @@ class App extends React.Component {
     this.getData();
   }
 
+  handleSelectEvent(id) {
+    const events = [...this.state.events];
+    const selectedEvent = events.filter((event) => event.id === id)[0];
+    this.setState({
+      view: 'selected event',
+      selectedEvent: { ...selectedEvent },
+    });
+  }
+
   renderView() {
     const { view } = this.state;
     if (view === 'home') {
@@ -63,9 +75,14 @@ class App extends React.Component {
         <div>
           <Events
             events={events}
+            onClick={this.handleSelectEvent}
           />
         </div>
       );
+    } else {
+      return <EventDetails
+        event={this.state.selectedEvent}
+      />
     }
   }
 

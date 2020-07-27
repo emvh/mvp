@@ -1,26 +1,75 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
-import CardColumns from 'react-bootstrap/CardColumns';
 import moment from 'moment';
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import PetsIcon from '@material-ui/icons/Pets';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
+
+const useStyles = makeStyles((theme) => ({
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    paddingTop: '56.25%', // 16:9
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+  },
+  cardContent: {
+    flexGrow: 1,
+    textOverflow: 'ellipsis',
+    wordWrap: 'break-word',
+    overflow: 'hidden',
+    maxHeight: '12em',
+    lineHeight: '3em',
+  },
+}));
 
 const EventCard = (props) => {
-  const { title, city, date, description, image } = props;
+  const classes = useStyles();
+  const { index, id, title, date, description, image, onClick } = props;
 
   return (
-    <div>
-      <div>
-        <div className="col mb-4">
-          <div className="card h-100">
-            <img src={image} className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h6>{moment(date).format('MMMM Do YYYY')}</h6>
-              <h5 className="card-title">{title}</h5>
-              <p className="card-text">{description}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Grid item key={id} xs={12} sm={6} md={4}>
+      <Card className={classes.card}>
+        <CardMedia
+          className={classes.cardMedia}
+          image={image}
+          title="Image title"
+        />
+        <CardContent className={classes.cardContent}>
+          <Typography gutterBottom variant="h5" component="h2">
+            {title}
+          </Typography>
+          <Typography>
+            {moment(date).format('MMMM Do YYYY')}
+          </Typography>
+          <Typography>
+            {description}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small" color="primary" onClick={() => onClick(id)}>
+            View
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
   );
 };
 

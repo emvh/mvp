@@ -1,52 +1,57 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
-import CardColumns from 'react-bootstrap/CardColumns';
 import SearchBar from './SearchBar.jsx';
 import EventCard from './EventCard.jsx';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
-class Events extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const useStyles = makeStyles((theme) => ({
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+}));
 
-  render() {
-    const { events } = this.props;
+const Events = (props) => {
+  const { events, onClick } = props;
+  const sortedEvents = events.sort((event1, event2) => {
+    const dateA = new Date(event1.createdAt);
+    const dateB = new Date(event2.createdAt);
+    return dateA > dateB ? -1 : dateA < dateB ? 1 : 0;
+  });
 
-    const sortedEvents = events.sort((event1, event2) => {
-      const dateA = new Date(event1.createdAt);
-      const dateB = new Date(event2.createdAt);
-      return dateA > dateB ? -1 : dateA < dateB ? 1 : 0;
-    });
+  const recentEvents = sortedEvents.slice(0, 6);
+  const classes = useStyles();
 
-    const recentEvents = sortedEvents.slice(0, 6);
-
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <SearchBar />
-        </div>
+        <SearchBar />
+      </div>
 
-        <div>
-          categories placeholder
-        </div>
+      <div>
+        categories placeholder
+      </div>
 
-        <div>
-          <div class="row row-cols-1 row-cols-md-3">
+      <div>
+        <Container className={classes.cardGrid} maxWidth="md">
+          <Grid container spacing={4}>
             {recentEvents.map((event) => (
               <EventCard
+                id={event.id}
                 title={event.title}
                 city={event.city}
                 date={event.start_time}
                 image={event.image}
                 description={event.description}
+                onClick={onClick}
               />
             ))}
-          </div>
-
-        </div>
+          </Grid>
+        </Container>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Events;
