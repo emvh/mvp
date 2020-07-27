@@ -3,13 +3,12 @@ import usePlacesAutocomplete, {
   getGeocode,
   getZipCode
 } from "use-places-autocomplete";
-// import useOnclickOutside from "react-cool-onclickoutside";
-// import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-// import regeneratorRuntime from "regenerator-runtime";
+
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+
 import axios from 'axios';
 import { zip_code_key } from '../../../database/keys.js';
 
@@ -21,41 +20,39 @@ class SearchBar extends React.Component {
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
+    // this.handleSelect = this.handleSelect.bind(this);
     this.getNearbyZipCodes = this.getNearbyZipCodes.bind(this);
   }
 
   handleInput(location) {
-    // const { value } = event.target;
-    // console.log('searchbar text: ', event.target);
     this.setState({ location });
   }
 
-  handleSelect() {
-    const { location } = this.state;
-    geocodeByAddress(location)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => {console.log('Success', latLng)
-        return (
-          axios(`https://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius/ByLatLon?latitude=${latLng.lat}&longitude=${latLng.lng}&minimumradius=0&maximumradius=20&key=${zip_code_key}`, {
-            method: 'get',
-            mode: 'no-cors',
-            crossDomain: true,
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Content-Type': 'application/json',
-            },
-            credentials: 'same-origin',
-          })
-        );
-    })
-      .catch(error => console.error('Error', error));
-  };
+  // handleSelect() {
+  //   const { location } = this.state;
+  //   const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  //   const url = `https://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius/ByLatLon?latitude=${latLng.lat}&longitude=${latLng.lng}&minimumradius=0&maximumradius=20&key=${zip_code_key}`;
+  //   geocodeByAddress(location)
+  //     .then(results => getLatLng(results[0]))
+  //     .then(latLng => {
+  //       console.log('Success', latLng);
+  //       return (
+  //         axios({
+  //           method: 'get',
+  //           url: proxyurl + url,
+  //         })
+  //         );
+  //       })
+  //     .then((response) => response.data.DataList)
+  //     .catch((error) => console.error('Error', error));
+  // };
 
   getNearbyZipCodes() {
     const location = { address: this.state.location };
-    const distance = 20;
-    console.log(zip_code_key)
+    const distance = 50;
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = `https://www.zipcodeapi.com/rest/${zip_code_key}/radius.json/94085/50/mile`;
+    console.log(zip_code_key);
     getGeocode(location)
     .then((results) => getZipCode(results[0], false))
     .then((zipCode) => {
@@ -63,18 +60,10 @@ class SearchBar extends React.Component {
       return (
         axios({
           method: 'get',
-          url: `https://www.zipcodeapi.com/rest/${zip_code_key}/radius.json/94085/${distance}/mile`,
-          mode: 'no-cors',
-          crossDomain: true,
-          headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
-          credentials: 'same-origin',
+          url: proxyurl + url,
         }));
     })
-    .then((response) => console.log(response))
+    .then((response) => console.log(response.data.zip_codes))
     .catch((error) => {
       console.log("Error:", error);
     });
@@ -92,7 +81,7 @@ class SearchBar extends React.Component {
       <PlacesAutocomplete
       value={this.state.location}
       onChange={this.handleInput}
-      onSelect={() => {this.handleSelect(); this.getNearbyZipCodes()}}
+      onSelect={() => { this.getNearbyZipCodes()}}
       >
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <div>
@@ -127,22 +116,6 @@ class SearchBar extends React.Component {
         </div>
       )}
     </PlacesAutocomplete>
-
-      // <div>
-      //   <form onSubmit={this.handleSubmit}>
-      //     <input
-      //       type = "text"
-      //       placeholder = "Enter Location..."
-      //       value = {this.state.text}
-      //       onChange = {this.handleInput}
-      //       />
-      //     <input type = "submit" value = "go!" />
-      //   </form>
-
-      //   <GooglePlacesAutocomplete
-      //     onSelect={console.log}
-      //   />
-      // </div>
     );
   }
 }
