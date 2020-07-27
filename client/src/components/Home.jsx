@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%',
   },
   cardContent: {
     flexGrow: 1,
@@ -61,15 +61,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3];
-
 const Home = (props) => {
+  const cards = [1, 2, 3];
   const classes = useStyles();
   const { onClick } = props;
 
   return (
     <React.Fragment>
       <CssBaseline />
+
       <AppBar position="relative" background-color="yellow">
         <Toolbar background-color="yellow">
           <PetsIcon className={classes.icon} />
@@ -78,9 +78,9 @@ const Home = (props) => {
           </Typography>
         </Toolbar>
       </AppBar>
+
       <main>
 
-        {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -111,8 +111,6 @@ const Home = (props) => {
         </div>
 
         <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-
           <Grid container spacing={4}>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
@@ -120,7 +118,7 @@ const Home = (props) => {
                   <CardMedia
                     className={classes.cardMedia}
                     image="https://source.unsplash.com/random"
-                    title="Image title"
+                    title="Some Blog"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -143,9 +141,9 @@ const Home = (props) => {
             ))}
           </Grid>
         </Container>
+
       </main>
 
-      {/* Footer */}
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
           Footer
@@ -155,21 +153,9 @@ const Home = (props) => {
         </Typography>
         <Copyright />
       </footer>
-      {/* End footer */}
 
     </React.Fragment>
   );
-}
-
-// const Home = () => (
-//     <div>
-//       <span>
-//         <button>Create an Event</button>
-//       </span>
-//       <span>
-//         <button>Find an Event</button>
-//       </span>
-//     </div>
-//   )
+};
 
 export default Home;
