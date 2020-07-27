@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
+import Toolbar from './Toolbar.jsx';
+import PetsIcon from '@material-ui/icons/Pets';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -14,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Events = (props) => {
-  const { events, onClick } = props;
+  const { events, onClick, filterByCategory } = props;
   const sortedEvents = events.sort((event1, event2) => {
     const dateA = new Date(event1.createdAt);
     const dateB = new Date(event2.createdAt);
@@ -26,18 +28,41 @@ const Events = (props) => {
 
   return (
     <div>
-      <div></div>
-      <div className="searchbar">
-        <SearchIcon />
-        <SearchBar />
-      </div>
-
       <div className="categories">
-        <span><button className="category-buttons">Social</button> </span>
-        <span><button className="category-buttons">Classes</button> </span>
-        <span><button className="category-buttons">Adoption</button> </span>
-        <span><button className="category-buttons">Puppy Therapy</button> </span>
-        <span><button className="category-buttons">Fitness</button> </span>
+        {/* <span>
+          <span>
+            <SearchIcon />
+          </span>
+          <span>
+            <SearchBar />
+          </span>
+        </span> */}
+
+        <span>
+          <button className="category-buttons" onClick={() => filterByCategory('social')}>
+            Social
+          </button>
+        </span>
+        <span>
+          <button className="category-buttons" onClick={() => filterByCategory('classes')}>
+            Classes
+          </button>
+        </span>
+        <span>
+          <button className="category-buttons" onClick={() => filterByCategory('adoption')}>
+            Adoption
+          </button>
+        </span>
+        <span>
+          <button className="category-buttons" onClick={() => filterByCategory('puppy therapy')}>
+            Puppy Therapy
+          </button>
+          </span>
+        <span>
+          <button className="category-buttons" onClick={() => filterByCategory('fitness')}>
+            Fitness
+          </button>
+        </span>
       </div>
 
       <div>

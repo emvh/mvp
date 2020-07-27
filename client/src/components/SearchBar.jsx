@@ -79,15 +79,15 @@ class SearchBar extends React.Component {
   render() {
     return (
       <PlacesAutocomplete
-      value={this.state.location}
-      onChange={this.handleInput}
-      onSelect={() => { this.getNearbyZipCodes()}}
+        value={this.state.location}
+        onChange={this.handleInput}
+        onSelect={() => { this.getNearbyZipCodes()}}
       >
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <div>
           <input
             {...getInputProps({
-              placeholder: 'Enter Postal Code ...',
+              placeholder: 'Search by zip code ...',
               className: 'location-search-input',
             })}
           />

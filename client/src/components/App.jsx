@@ -4,7 +4,7 @@ import Home from './Home.jsx';
 import Events from './Events.jsx';
 import EventDetails from './EventDetails.jsx';
 import AdoptionFeed from './AdoptionFeed.jsx';
-import searchIds from '../searchTerms.js';
+import searchIds from '../searchIds.js';
 import Toolbar from './Toolbar.jsx';
 
 class App extends React.Component {
