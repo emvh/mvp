@@ -1,14 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import Events from './Events.jsx';
 import Home from './Home.jsx';
+import Events from './Events.jsx';
 import EventDetails from './EventDetails.jsx';
+import AdoptionFeed from './AdoptionFeed.jsx';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      view: 'events',
+      view: 'adoption',
       events: [],
       isLoaded: false,
       selectedEvent: {},
@@ -41,7 +42,6 @@ class App extends React.Component {
   }
 
   changeView(view) {
-    console.log('view:', view);
     this.setState({
       view,
     });
@@ -49,7 +49,7 @@ class App extends React.Component {
   }
 
   handleSelectEvent(id) {
-    const events = [...this.state.events];
+    const { events } = { ...this.state };
     const selectedEvent = events.filter((event) => event.id === id)[0];
     this.setState({
       view: 'selected event',
@@ -61,13 +61,13 @@ class App extends React.Component {
     const { view } = this.state;
     if (view === 'home') {
       return (
-      <Home
-        onClick={this.changeView}
-      />
+        <Home
+          onClick={this.changeView}
+        />
       );
     }
     if (view === 'adoption') {
-      return (<div>adoption</div>);
+      return (<div><AdoptionFeed /></div>);
     }
     if (view === 'events') {
       const { events } = this.state;
@@ -79,11 +79,13 @@ class App extends React.Component {
           />
         </div>
       );
-    } else {
-      return <EventDetails
-        event={this.state.selectedEvent}
-      />
     }
+    const { selectedEvent } = this.state;
+    return (
+      <EventDetails
+        event={selectedEvent}
+      />
+    );
   }
 
   render() {
@@ -93,26 +95,8 @@ class App extends React.Component {
     }
 
     return (
-      <div>
-
-        {/* <div className="nav">
-          <span
-            className="section"
-            onClick={ () => this.changeView('feed') }
-          >
-            Find Love
-          </span>
-          <span
-            onClick={ () => this.changeView('events') }
-          >
-            Find Pawties
-          </span>
-        </div> */}
-
-        <div className="main">
-          {this.renderView()}
-        </div>
-
+      <div className="main">
+        {this.renderView()}
       </div>
     );
   }
