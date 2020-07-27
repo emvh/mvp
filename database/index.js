@@ -32,7 +32,7 @@ const eventSchema = new mongoose.Schema({
   stop_time: String,
   description: String,
   owner: String,
-  categories: [`${categorySchemaType}`],
+  category: [`${categorySchemaType}`],
   image: String,
 });
 
