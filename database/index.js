@@ -14,6 +14,7 @@ const categorySchemaType = {
 };
 
 const eventSchema = new mongoose.Schema({
+  id: Number,
   title: String,
   price: String,
   venue: String,

@@ -37,6 +37,7 @@ const extractEventData = (arr) => {
   const dataSet = [];
   for (let i = 0; i < 100; i++) {
     const event = {
+      id: i + 1,
       title: arr[i].title,
       price: arr[i].price,
       venue: arr[i].venue_name,
