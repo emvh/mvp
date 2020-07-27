@@ -5,6 +5,7 @@ import Events from './Events.jsx';
 import EventDetails from './EventDetails.jsx';
 import AdoptionFeed from './AdoptionFeed.jsx';
 import searchIds from '../searchTerms.js';
+import Toolbar from './Toolbar.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -83,6 +84,9 @@ class App extends React.Component {
       const { events } = this.state;
       return (
         <div>
+          <Toolbar
+            onClick={this.changeView}
+          />
           <Events
             events={events}
             onClick={this.handleSelectEvent}
@@ -95,6 +99,9 @@ class App extends React.Component {
       const { filteredEvents } = this.state;
       return (
         <div>
+          <Toolbar
+            onClick={this.changeView}
+          />
           <Events
             events={filteredEvents}
             onClick={this.handleSelectEvent}
