@@ -4,6 +4,7 @@ import Home from './Home.jsx';
 import Events from './Events.jsx';
 import EventDetails from './EventDetails.jsx';
 import AdoptionFeed from './AdoptionFeed.jsx';
+import searchIds from '../searchTerms.js';
 
 class App extends React.Component {
   constructor() {
@@ -13,10 +14,12 @@ class App extends React.Component {
       events: [],
       isLoaded: false,
       selectedEvent: {},
+      filteredEvents: [],
     };
     this.renderView = this.renderView.bind(this);
     this.changeView = this.changeView.bind(this);
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
+    this.filterByCategory = this.filterByCategory.bind(this);
   }
 
   componentDidMount() {
@@ -57,6 +60,13 @@ class App extends React.Component {
     });
   }
 
+  filterByCategory(category) {
+    const events = [...this.state.events];
+    const search = searchIds(category);
+    const filteredEvents = events.filter((event) => event.category.some((category) => search.includes(category.id)));
+    this.setState({ filteredEvents, view: 'events' });
+  }
+
   renderView() {
     const { view } = this.state;
     if (view === 'home') {
@@ -69,17 +79,31 @@ class App extends React.Component {
     if (view === 'adoption') {
       return (<div><AdoptionFeed /></div>);
     }
-    if (view === 'events') {
+    if (view === 'events' && this.state.filteredEvents.length === 0) {
       const { events } = this.state;
       return (
         <div>
           <Events
             events={events}
             onClick={this.handleSelectEvent}
+            filterByCategory={this.filterByCategory}
           />
         </div>
       );
     }
+    if (view === 'events' && this.state.filteredEvents.length > 0) {
+      const { filteredEvents } = this.state;
+      return (
+        <div>
+          <Events
+            events={filteredEvents}
+            onClick={this.handleSelectEvent}
+            filterByCategory={this.filterByCategory}
+          />
+        </div>
+      );
+    }
+
     const { selectedEvent } = this.state;
     return (
       <EventDetails
