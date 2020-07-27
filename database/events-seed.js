@@ -55,7 +55,7 @@ const extractEventData = (arr) => {
       description: arr[i].description,
       owner: arr[i].owner,
       category: arr[i].categories.category,
-      image: 'http://placecorgi.com/480',
+      image: 'http://placecorgi.com/260',
     };
     dataSet.push(event);
   }
