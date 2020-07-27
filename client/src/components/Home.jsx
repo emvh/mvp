@@ -18,7 +18,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    backgroundImage: `url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80')`,
+    backgroundImage: "url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80')",
     backgroundPosition: 'center',
     padding: theme.spacing(8, 0, 6),
   },
@@ -69,18 +69,16 @@ const Home = (props) => {
   return (
     <React.Fragment>
       <CssBaseline />
-
-      <AppBar position="relative" background-color="yellow">
-        <Toolbar background-color="yellow">
-          <PetsIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Ruff
-          </Typography>
-        </Toolbar>
-      </AppBar>
+        <AppBar position="relative" >
+          <Toolbar background-color="yellow">
+            <PetsIcon className={classes.icon} />
+            <Typography variant="h6" color="inherit" noWrap>
+              Paws
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
       <main>
-
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -96,12 +94,12 @@ const Home = (props) => {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary">
+                  <Button variant="contained" color="primary" onClick={() => onClick('adoption')}>
                     Find Love
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="outlined" color="primary" onClick={() => onClick('events')}>
+                  <Button variant="outlined" color="primary" style={{color: 'white'}} onClick={() => onClick('events')}>
                     Find Pawties
                   </Button>
                 </Grid>
@@ -122,7 +120,7 @@ const Home = (props) => {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      Some Blog
                     </Typography>
                     <Typography>
                       This is a media card. You can use this section to describe the content.
@@ -132,28 +130,23 @@ const Home = (props) => {
                     <Button size="small" color="primary">
                       View
                     </Button>
-                    <Button size="small" color="primary">
-                      Edit
-                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
             ))}
           </Grid>
         </Container>
-
       </main>
 
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
-          Footer
+          Wassup Dawg
         </Typography>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
           Something here to give the footer a purpose!
         </Typography>
         <Copyright />
       </footer>
-
     </React.Fragment>
   );
 };
