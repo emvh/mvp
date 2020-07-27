@@ -65,7 +65,7 @@ class App extends React.Component {
     return (
       <div>
 
-        <div className="nav">
+        {/* <div className="nav">
           <span
             className="section"
             onClick={ () => this.changeView('feed') }
@@ -77,7 +77,7 @@ class App extends React.Component {
           >
             Find Pawties
           </span>
-        </div>
+        </div> */}
 
         <div className="main">
           {this.renderView()}
