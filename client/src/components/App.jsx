@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import Events from './Events.jsx';
+import Home from './Home.jsx';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      view: 'events',
+      view: 'home',
       events: [],
       isLoaded: false,
     };
@@ -38,16 +39,7 @@ class App extends React.Component {
   renderView() {
     const { view } = this.state;
     if (view === 'home') {
-      return (
-        <div>
-          <span>
-            <button>Create an Event</button>
-          </span>
-          <span>
-            <button>Find an Event</button>
-          </span>
-        </div>
-      );
+      return (<Home />);
     }
     if (view === 'adoption') {
       return (<div>adoption</div>);
