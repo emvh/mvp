@@ -4,6 +4,7 @@ import EventCard from './EventCard.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -25,12 +26,18 @@ const Events = (props) => {
 
   return (
     <div>
-      <div>
+      <div></div>
+      <div className="searchbar">
+        <SearchIcon />
         <SearchBar />
       </div>
 
-      <div>
-        categories placeholder
+      <div className="categories">
+        <span><button className="category-buttons">Social</button> </span>
+        <span><button className="category-buttons">Classes</button> </span>
+        <span><button className="category-buttons">Adoption</button> </span>
+        <span><button className="category-buttons">Puppy Therapy</button> </span>
+        <span><button className="category-buttons">Fitness</button> </span>
       </div>
 
       <div>
