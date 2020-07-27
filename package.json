@@ -20,7 +20,10 @@
   "homepage": "https://github.com/emvh/hrsf128-mvp#readme",
   "dependencies": {
     "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "moment": "^2.27.0",
     "mongoose": "^5.9.25",
     "node": "^14.5.0",
     "react": "^16.8.6",
