@@ -20,6 +20,7 @@
   "homepage": "https://github.com/emvh/hrsf128-mvp#readme",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "cors": "^2.8.5",
