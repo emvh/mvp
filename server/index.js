@@ -7,19 +7,19 @@ const cors = require('cors');
 const db = require('../database');
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
-  next();
+  res.set({
+    'Access-Control-Allow-Origin': `http://localhost:${port}`,
+    'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+  });
+  if (req.method === 'OPTIONS') {
+    res.send(200);
+  } else {
+    next();
+  }
 });
 
-// app.use(cors());
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
-// app.options('*', cors());
-app.options('*', function (req,res) { res.sendStatus(200); });
-// app.get('/with-cors', cors(), (req, res, next) => {
-//   res.json({ msg: 'WHOAH with CORS it works! 🔝 🎉' })
-// })
+app.use(cors());
 
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 
