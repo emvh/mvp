@@ -31,7 +31,9 @@ const getEvents = () => {
       insertEventData(data);
     })
     .catch((error) => console.log('ERROR:', error));
-}
+};
+
+getEvents();
 
 const extractEventData = (arr) => {
   const dataSet = [];
@@ -55,14 +57,12 @@ const extractEventData = (arr) => {
       description: arr[i].description,
       owner: arr[i].owner,
       category: arr[i].categories.category,
-      image: 'http://placecorgi.com/480',
+      image: (arr[i].image === null) ? 'http://placecorgi.com/480' : arr[i].image.large.url,
     };
     dataSet.push(event);
   }
   return dataSet;
 };
-
-const data = getEvents();
 
 const insertEventData = (data) => {
   db.Event.insertMany(data)
