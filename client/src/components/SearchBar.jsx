@@ -1,14 +1,6 @@
 import React from 'react';
-import usePlacesAutocomplete, {
-  getGeocode,
-  getZipCode
-} from "use-places-autocomplete";
-
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete';
-
+import usePlacesAutocomplete, { getGeocode, getZipCode } from "use-places-autocomplete";
+import PlacesAutocomplete from 'react-places-autocomplete';
 import axios from 'axios';
 import { zip_code_key } from '../../../database/keys.js';
 
@@ -20,8 +12,6 @@ class SearchBar extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.getNearbyZipCodes = this.getNearbyZipCodes.bind(this);
   }
 
   handleChange(location) {
@@ -29,12 +19,10 @@ class SearchBar extends React.Component {
   }
 
   handleSelect() {
-    const location = {address: this.state.location}
-    console.log(location)
+    const location = { address: this.state.location }
     getGeocode(location)
       .then((results) => getZipCode(results[0], false))
       .then((zipCode) => {
-        console.log("ZIP Code: ", zipCode);
         const distance = 25;
         const proxyurl = 'https://cors-anywhere.herokuapp.com/';
         const url = `https://www.zipcodeapi.com/rest/${zip_code_key}/radius.json/${zipCode}/${distance}/mile`;
@@ -46,9 +34,9 @@ class SearchBar extends React.Component {
       })
       .then((response) => {
         this.props.filterByZipCode(response.data.zip_codes);
-        })
+      })
       .catch((error) => {
-        console.log("Error: ", error);
+        console.log('Error: ', error);
       });
   }
 
@@ -87,10 +75,10 @@ class SearchBar extends React.Component {
                  <span>{suggestion.description}</span>
                 </div>
               );
-            })}
+             })}
             </div>
           </div>
-      )}
+        )}
       </PlacesAutocomplete>
     );
   }

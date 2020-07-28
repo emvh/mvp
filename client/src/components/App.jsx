@@ -72,10 +72,7 @@ class App extends React.Component {
   filterByZipCode(zipCodes) {
     const events = [...this.state.events];
     const search = zipCodes;
-    console.log('filterzips', search);
-    // debugger;
     const filteredEvents = events.filter((event) => search.some((zip) => zip.zip_code === event.zip_code));
-    console.log('filteredevents', filteredEvents)
     this.setState({ filteredEvents, view: 'events' });
   }
 
