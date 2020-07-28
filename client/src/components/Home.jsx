@@ -12,20 +12,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -33,12 +19,16 @@ const useStyles = makeStyles((theme) => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    backgroundImage: "url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80')",
+    backgroundImage: "url('https://mvp123.s3-us-west-1.amazonaws.com/pugblanket.jpg')",
     backgroundPosition: 'center',
+    background: 'no-repeat',
+    backgroundSize: 'cover',
     padding: theme.spacing(8, 0, 6),
   },
   heroButtons: {
     marginTop: theme.spacing(4),
+    marginBottom: '100px',
+    marginLeft: '250px',
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -70,7 +60,7 @@ const Home = (props) => {
     <React.Fragment>
       <CssBaseline />
         <AppBar position="relative" >
-          <Toolbar background-color="yellow">
+          <Toolbar background-color="yellow" style={{backgroundColor: '#51b2ae'}}>
             <PetsIcon className={classes.icon} />
             <Typography variant="h6" color="inherit" noWrap>
               Paws
@@ -80,26 +70,33 @@ const Home = (props) => {
 
       <main>
         <div className={classes.heroContent}>
-          <Container maxWidth="sm">
+          <Container maxWidth="lg">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               <br/>
             </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            {/* <Typography variant="h5" align="center" color="textSecondary" paragraph>
               <br/>
               <br/>
               <br/>
               <br/>
               <br/>
-            </Typography>
+            </Typography> */}
             <div className={classes.heroButtons}>
+            {/* <Typography variant="h5" align="center" color="textSecondary" paragraph>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+            </Typography> */}
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary" onClick={() => onClick('adoption')}>
+                  <Button variant="contained" color="primary" style={{backgroundColor: '#51b2ae'}} onClick={() => onClick('adoption')}>
                     Find Love
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="outlined" color="primary" style={{color: 'white'}} onClick={() => onClick('events')}>
+                  <Button variant="outlined" color="primary" style={{backgroundColor: '#edeef0', fontWeight: 'bold', color: '#51b2ae', borderColor: '#51b2ae'}} onClick={() => onClick('events')}>
                     Find Pawties
                   </Button>
                 </Grid>
@@ -110,24 +107,24 @@ const Home = (props) => {
 
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {props.blogs.map((blog, index) => (
+              <Grid item key={index} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
+                    image={blog.url}
                     title="Some Blog"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Some Blog
+                      {blog.title}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the content.
+                      {blog.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" style={{color: "#337570"}}>
                       View
                     </Button>
                   </CardActions>
@@ -143,9 +140,8 @@ const Home = (props) => {
           Wassup Dawg
         </Typography>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
+
         </Typography>
-        <Copyright />
       </footer>
     </React.Fragment>
   );
