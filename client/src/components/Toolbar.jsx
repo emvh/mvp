@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar(props) {
   const classes = useStyles();
-  const { onClick } = props;
+  const { onClick, filterByZipCode } = props;
 
   return (
     <div className={classes.grow}>
@@ -100,11 +100,9 @@ export default function PrimarySearchAppBar(props) {
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              {/* <SearchIcon /> */}
-
+              <SearchIcon />
                 &nbsp;
                 &nbsp;
-
                 </div>
 
               <SearchBar
@@ -112,18 +110,8 @@ export default function PrimarySearchAppBar(props) {
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
+                filterByZipCode={filterByZipCode}
               />
-
-
-{/*
-            <InputBase
-              placeholder="Search by zip-code..."
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            /> */}
 
           </div>
 

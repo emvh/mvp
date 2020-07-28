@@ -5,7 +5,7 @@ import Events from './Events.jsx';
 import EventDetails from './EventDetails.jsx';
 import AdoptionFeed from './AdoptionFeed.jsx';
 import searchIds from '../searchIds.js';
-import Toolbar from './Toolbar.jsx';
+import PrimarySearchAppBar from './Toolbar.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -21,6 +21,7 @@ class App extends React.Component {
     this.changeView = this.changeView.bind(this);
     this.handleSelectEvent = this.handleSelectEvent.bind(this);
     this.filterByCategory = this.filterByCategory.bind(this);
+    this.filterByZipCode = this.filterByZipCode.bind(this);
   }
 
   componentDidMount() {
@@ -68,6 +69,16 @@ class App extends React.Component {
     this.setState({ filteredEvents, view: 'events' });
   }
 
+  filterByZipCode(zipCodes) {
+    const events = [...this.state.events];
+    const search = zipCodes;
+    console.log('filterzips', search);
+    // debugger;
+    const filteredEvents = events.filter((event) => search.some((zip) => zip.zip_code === event.zip_code));
+    console.log('filteredevents', filteredEvents)
+    this.setState({ filteredEvents, view: 'events' });
+  }
+
   renderView() {
     const { view } = this.state;
     if (view === 'home') {
@@ -84,8 +95,9 @@ class App extends React.Component {
       const { events } = this.state;
       return (
         <div>
-          <Toolbar
+          <PrimarySearchAppBar
             onClick={this.changeView}
+            filterByZipCode={this.filterByZipCode}
           />
           <Events
             events={events}
@@ -99,8 +111,9 @@ class App extends React.Component {
       const { filteredEvents } = this.state;
       return (
         <div>
-          <Toolbar
+          <PrimarySearchAppBar
             onClick={this.changeView}
+            filterByZipCode={this.filterByZipCode}
           />
           <Events
             events={filteredEvents}
