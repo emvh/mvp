@@ -72,6 +72,7 @@ class App extends React.Component {
     const search = searchIds(category);
     const filteredEvents = events.filter((event) => event.category.some((category) => search.includes(category.id)));
     this.setState({ filteredEvents, view: 'events' });
+    console.log(this.state.view)
   }
 
   filterByZipCode(zipCodes) {
@@ -124,8 +125,9 @@ class App extends React.Component {
       return (
         <div>
           <PrimarySearchAppBar
-            onClick={this.changeView()}
+            onClick={this.changeView}
             filterByZipCode={this.filterByZipCode}
+            view={this.state.view}
           />
           <Events
             events={filteredEvents}
@@ -138,9 +140,13 @@ class App extends React.Component {
     if (view === 'form') {
       return (
         <div>
+          <PrimarySearchAppBar
+            onClick={this.changeView}
+            filterByZipCode={this.filterByZipCode}
+          />
           <EventForm />
         </div>
-      )
+      );
     }
 
     const { selectedEvent } = this.state;

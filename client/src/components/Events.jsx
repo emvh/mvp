@@ -4,9 +4,8 @@ import EventCard from './EventCard.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import SearchIcon from '@material-ui/icons/Search';
-import Toolbar from './Toolbar.jsx';
-import PetsIcon from '@material-ui/icons/Pets';
+import GoogleApiWrapper from './Map.jsx';
+import { API_KEY } from '../../../database/keys.js';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -29,15 +28,6 @@ const Events = (props) => {
   return (
     <div>
       <div className="categories">
-        {/* <span>
-          <span>
-            <SearchIcon />
-          </span>
-          <span>
-            <SearchBar />
-          </span>
-        </span> */}
-
         <span>
           <button className="category-buttons" onClick={() => filterByCategory('social')}>
             Social
@@ -78,10 +68,16 @@ const Events = (props) => {
                 description={event.description}
                 onClick={onClick}
               />
-            ))}
+              ))}
           </Grid>
+
         </Container>
       </div>
+
+      <div>
+        {/* <GoogleApiWrapper /> */}
+      </div>
+
     </div>
   );
 };

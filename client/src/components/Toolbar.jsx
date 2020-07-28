@@ -4,29 +4,16 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-
-import SearchBar from './SearchBar.jsx'
-
 import PetsIcon from '@material-ui/icons/Pets';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import EventIcon from '@material-ui/icons/Event';
+import SearchBar from './SearchBar.jsx';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
   },
   title: {
     display: 'none',
@@ -77,64 +64,59 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
     },
   },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
 }));
 
-export default function PrimarySearchAppBar(props) {
+const PrimarySearchAppBar = (props) => {
   const classes = useStyles();
-  const { onClick, filterByZipCode } = props;
+  const { onClick, filterByZipCode, view } = props;
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ backgroundColor: '#51b2ae' }}>
         <Toolbar>
 
           <Typography className={classes.title} variant="h6" noWrap onClick={() => onClick('home')}>
             Pawties
           </Typography>
 
+          {view === 'events' &&
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon />
-                &nbsp;
-                &nbsp;
-                </div>
-
-              <SearchBar
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                filterByZipCode={filterByZipCode}
-              />
-
+              {/* <SearchIcon /> */}
+              &nbsp;
+              &nbsp;
+            </div>
+            <SearchBar
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              filterByZipCode={filterByZipCode}
+            />
           </div>
+          }
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
 
-            <IconButton aria-label="show 4 new mails" color="inherit">
+            <IconButton aria-label="show 4 new notifs" color="inherit" onClick={() => onClick('adoption')}>
               <Badge badgeContent={4} color="secondary">
-                <PetsIcon onClick={() => {onClick('adoption'); console.log('click')}} />
+                <PetsIcon />
               </Badge>
             </IconButton>
 
-            <IconButton aria-label="" color="inherit">
+            <IconButton aria-label="" color="inherit" onClick={() => onClick('form')}>
               <Badge badgeContent={0} color="secondary">
-                <AddCircleIcon onClick={() => onClick('create event')} />
+                <AddCircleIcon />
               </Badge>
             </IconButton>
 
             <IconButton
               aria-label=""
               color="inherit"
+              onClick={() => onClick('events')}
             >
-              <EventIcon onClick={() => onClick('events')} />
+              <EventIcon />
             </IconButton>
           </div>
 
@@ -143,4 +125,6 @@ export default function PrimarySearchAppBar(props) {
 
     </div>
   );
-}
+};
+
+export default PrimarySearchAppBar;
