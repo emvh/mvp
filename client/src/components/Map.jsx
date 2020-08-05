@@ -6,6 +6,7 @@ const mapStyle = {
   width: '100%',
   height: '100%',
   justifyContent: 'center',
+  marginLeft: '500px',
 };
 
 const containerStyle = {
@@ -17,7 +18,6 @@ const containerStyle = {
 const MapContainer = ((props) => {
   const { events } = props;
   console.log('map props', events)
-  // const [selectedEvent, setSelectedEvent] = useState(null);
 
   return (
     <div>
@@ -36,19 +36,6 @@ const MapContainer = ((props) => {
         // onClick={() => {setSelectedEvent(event)}}
       />
     )}
-
-    {(
-      <InfoWindow
-        // onCloseClick = {() => {
-        //   setSelectedEvent(null);
-        // }}
-        // position={{
-        //   lat: selectedEvent.latitude,
-        //   lng: selectedEvent.longitude
-        // }}
-        >
-        </InfoWindow>
-      )}
     </Map>
     </div>
     );

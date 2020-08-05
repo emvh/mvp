@@ -1,11 +1,9 @@
 import React from 'react';
-import SearchBar from './SearchBar.jsx';
-import EventCard from './EventCard.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import GoogleApiWrapper from './Map.jsx';
-import { API_KEY } from '../../../database/keys.js';
+import EventCard from './EventCard.jsx';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -25,6 +23,7 @@ const Events = (props) => {
   const recentEvents = sortedEvents.slice(0, 6);
   const classes = useStyles();
 
+  // console.log(events)
   return (
     <div>
       <div className="categories">
@@ -74,8 +73,10 @@ const Events = (props) => {
         </Container>
       </div>
 
-      <div>
-        {/* <GoogleApiWrapper /> */}
+      <div className="map-container">
+        <GoogleApiWrapper
+          events={events}
+        />
       </div>
 
     </div>

@@ -1,38 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
-import { petfinder_token } from '../../../database/keys.js';
-import AdoptionCard from './AdoptionCard.jsx';
-import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns';
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%',
-  },
-  container: {
-    paddingTop: '50px',
-  }
-}));
+import AdoptionCard from './AdoptionCard.jsx';
+import { petfinder_token } from '../../../database/keys.js';
 
 function AdoptionFeed() {
-  const classes = useStyles();
-
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  const proxyurl = 'https://cors-anywhere.herokuapp.com/';
   const url = 'https://api.petfinder.com/v2/animals?type=dog&limit=100';
   const config = { Authorization: `Bearer ${petfinder_token}` };
 
@@ -56,13 +33,9 @@ function AdoptionFeed() {
 
   return (
     <div>
-
       <div>
         {isLoading && <p> ... </p>}
       </div>
-
-      {/* <div className={classes.root}> */}
-      {/* <Container className={classes.cardGrid}maxWidth="md"> */}
     <div className="adoption-container">
       <CardColumns>
        <Grid container spacing={2}>
@@ -77,7 +50,6 @@ function AdoptionFeed() {
         )))}
       </Grid>
       </CardColumns>
-      {/* </Container> */}
       </div>
     </div>
   );

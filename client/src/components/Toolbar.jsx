@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 import PetsIcon from '@material-ui/icons/Pets';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import EventIcon from '@material-ui/icons/Event';
@@ -107,7 +107,7 @@ const PrimarySearchAppBar = (props) => {
 
             <IconButton aria-label="" color="inherit" onClick={() => onClick('form')}>
               <Badge badgeContent={0} color="secondary">
-                <AddCircleIcon />
+                <AddCircleIcon onClick={() => onClick('form')}/>
               </Badge>
             </IconButton>
 
@@ -116,10 +116,9 @@ const PrimarySearchAppBar = (props) => {
               color="inherit"
               onClick={() => onClick('events')}
             >
-              <EventIcon />
+              <EventIcon onClick={() => onClick('form')} />
             </IconButton>
           </div>
-
         </Toolbar>
       </AppBar>
 

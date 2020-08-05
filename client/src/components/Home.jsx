@@ -74,25 +74,11 @@ const Home = (props) => {
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               <br/>
             </Typography>
-            {/* <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-            </Typography> */}
             <div className={classes.heroButtons}>
-            {/* <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-            </Typography> */}
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary" style={{backgroundColor: '#51b2ae'}} onClick={() => onClick('adoption')}>
-                    Find Love
+                    Find Friends
                   </Button>
                 </Grid>
                 <Grid item>

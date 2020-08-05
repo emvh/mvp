@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-// import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,10 +13,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Grid from '@material-ui/core/Grid';
-import Card from 'react-bootstrap/Card'
-import CardColumns from 'react-bootstrap/CardColumns';
-
+import Card from 'react-bootstrap/Card';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,8 +44,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AdoptionCard = (props) => {
-  const { key, name, breeds, image, description } = props;
-  // console.log('image', image)
+  const { name, breeds, image, description } = props;
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
@@ -62,9 +57,7 @@ const AdoptionCard = (props) => {
   };
 
   return (
-    // <Grid item key={key} xs={12} sm={6} md={4}>
       <Card className="p-6">
-    {/* <Card className={classes.root}> */}
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -116,7 +109,6 @@ const AdoptionCard = (props) => {
         </CardContent>
       </Collapse>
     </Card>
-    // </Grid>
   );
 };
 
